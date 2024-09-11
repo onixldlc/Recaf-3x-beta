@@ -46,8 +46,8 @@ jobs:
             **/TEST-*
             **/hs_err_pid*
 
-      - name: Build project
-        run: ./gradlew build
+      # - name: Build project
+      #   run: ./gradlew build
         
       - name: Extract project version to environment variable
         run: echo "PROJECT_VERSION=$(./gradlew properties | grep -Po '(?<=version\W ).*')" >> $GITHUB_ENV
@@ -103,6 +103,6 @@ jobs:
           upload_url:   
             ${{ steps.create_release.outputs.upload_url }}
           # Use the JAR file path from the image, replacing {VERSION}
-          asset_path: ./recaf-ui/build/libs/recaf-ui-${{ env.PROJECT_VERSION }}-all.jar 
-          asset_name: recaf-ui-${{ env.PROJECT_VERSION }}-all.jar
+          asset_path: ./recaf-ui/build/libs/recaf-${{ env.PROJECT_VERSION }}-J11-jar-with-dependencies.jar
+          asset_name: recaf-${{ env.PROJECT_VERSION }}-J11-jar-with-dependencies.jar
           asset_content_type: application/java-archive
